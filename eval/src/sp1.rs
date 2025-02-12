@@ -2,16 +2,19 @@ use core::time;
 use std::fs;
 
 use crate::{
-    utils::{gas_amount, get_elf, hash_bytes_per_second, hashes_per_second, rand_ecdsa_signature, rand_eddsa_signature, time_operation},
+    utils::{
+        gas_amount, get_elf, hash_bytes_per_second, hashes_per_second, rand_ecdsa_signature,
+        rand_eddsa_signature, time_operation,
+    },
     EvalArgs, PerformanceReport, ProgramId,
 };
 
-use sp1_sdk::Prover;
 use sp1_core_executor::SP1Context;
-use sp1_prover::build::try_build_groth16_bn254_artifacts_dev;
 use sp1_core_machine::io::SP1Stdin;
-use sp1_prover::{components::CpuProverComponents, utils::get_cycles, SP1Prover};
+use sp1_prover::build::try_build_groth16_bn254_artifacts_dev;
 use sp1_prover::HashableKey;
+use sp1_prover::{components::CpuProverComponents, utils::get_cycles, SP1Prover};
+use sp1_sdk::Prover;
 
 use serde::{Deserialize, Serialize};
 
@@ -24,10 +27,10 @@ use sp1_stark::SP1ProverOpts;
 pub struct SP1Evaluator;
 
 impl SP1Evaluator {
-    pub fn eval(args: &EvalArgs) -> PerformanceReport { 
+    pub fn eval(args: &EvalArgs) -> PerformanceReport {
         // Get stdin.
         let mut stdin = SP1Stdin::new();
-        match args.program { 
+        match args.program {
             ProgramId::Loop10k => {
                 stdin.write::<usize>(&2500);
             }
@@ -115,6 +118,14 @@ impl SP1Evaluator {
             ProgramId::Keccak25610mb => {
                 stdin.write(&vec![0u8; 1048576 * 10]);
             }
+            // ProgramId::Rsp17106222 => {
+            //     let input = include_bytes!("../blocks/17106222.bin");
+            //     stdin.write_vec(input.to_vec());
+            // }
+            ProgramId::Rsp17106222 => {
+                let input = include_bytes!("../blocks/reth-17106222-rsp-main.bin");
+                stdin.write_vec(input.to_vec());
+            }
             ProgramId::Rsp20526626 => {
                 let input = include_bytes!("../../fixtures/20526626.bin");
                 stdin.write_vec(input.to_vec());
@@ -154,25 +165,27 @@ impl SP1Evaluator {
             ProgramId::Rsp20528712 => {
                 let input = include_bytes!("../../fixtures/20528712.bin");
                 stdin.write_vec(input.to_vec());
-            },
+            }
             ProgramId::ECDSAVerify => {
                 stdin.write(&rand_ecdsa_signature());
-            },
+            }
             ProgramId::EDDSAVerify => {
                 let times: u8 = 100;
                 for _ in 0..times {
                     stdin.write(&rand_eddsa_signature());
                 }
-            },
+            }
             ProgramId::Helios => {
                 let input = include_bytes!("../../fixtures/helios/proof_inputs.cbor");
                 stdin.write_vec(input.to_vec());
-            },
+            }
             ProgramId::Groth16ProofVerify => {
-                let current_dir = std::env::current_dir().expect("Failed to get current working directory");
+                let current_dir =
+                    std::env::current_dir().expect("Failed to get current working directory");
 
-                let elf_path = 
-                    current_dir.join("programs/fibonacci/target/riscv32im-succinct-zkvm-elf/release/fibonacci"); 
+                let elf_path = current_dir.join(
+                    "programs/fibonacci/target/riscv32im-succinct-zkvm-elf/release/fibonacci",
+                );
 
                 let elf = fs::read(elf_path).unwrap();
 
@@ -182,11 +195,11 @@ impl SP1Evaluator {
                 let client = sp1_sdk::ProverClient::builder().cpu().build();
                 let (pk, vk) = client.setup(&elf);
                 let proof = client.prove(&pk, &input).groth16().run().unwrap();
-                
+
                 stdin.write_vec(proof.bytes());
                 stdin.write_vec(proof.public_values.to_vec());
                 stdin.write(&vk.bytes32());
-            },
+            }
             ProgramId::ZKEmail => {
                 #[derive(Serialize, Deserialize, Debug, Clone)]
                 #[serde(rename_all = "camelCase")]
@@ -202,7 +215,7 @@ impl SP1Evaluator {
                 let email_input = serde_json::from_slice::<EmailInputs>(EMAIL_JSON).unwrap();
 
                 stdin.write(&email_input);
-            },
+            }
             _ => {}
         }
 
@@ -216,7 +229,7 @@ impl SP1Evaluator {
                     "s3",
                     "cp",
                     &format!("stdin.bin"),
-                    &format!("s3://sp1-testing-suite/v4/{}/stdin.bin", args.program.to_string())
+                    &format!("s3://sp1-testing-suite/v4/{}/stdin.bin", args.program.to_string()),
                 ])
                 .status()
                 .expect("Failed to upload stdin.bin to S3");
@@ -224,18 +237,18 @@ impl SP1Evaluator {
             fs::write("program.bin", &elf).unwrap();
             std::process::Command::new("aws")
                 .args(&[
-                    "s3", 
+                    "s3",
                     "cp",
                     &format!("program.bin"),
-                    &format!("s3://sp1-testing-suite/v4/{}/program.bin", args.program.to_string())
+                    &format!("s3://sp1-testing-suite/v4/{}/program.bin", args.program.to_string()),
                 ])
                 .status()
                 .expect("Failed to upload program.bin to S3");
             std::process::exit(0);
         }
 
-        // Get the elf. 
-        let cycles = get_cycles(&elf, &stdin); 
+        // Get the elf.
+        let cycles = get_cycles(&elf, &stdin);
         println!("cycles: {}", cycles);
 
         let prover = SP1Prover::<CpuProverComponents>::new();
@@ -303,15 +316,15 @@ impl SP1Evaluator {
         let mut wrap_prove_duration = time::Duration::from_secs(0);
         let mut wrap_verify_duration = time::Duration::from_secs(0);
         let mut groth16_prove_duration = time::Duration::from_secs(0);
-        if args.groth16 { 
+        if args.groth16 {
             #[cfg(not(feature = "cuda"))]
             let (shrink_proof, tmp_shrink_prove_duration) =
                 time_operation(|| prover.shrink(compress_proof.clone(), opts).unwrap());
-    
+
             #[cfg(feature = "cuda")]
             let (shrink_proof, tmp_shrink_prove_duration) =
                 time_operation(|| server.shrink(compress_proof.clone()).unwrap());
-    
+
             shrink_prove_duration = tmp_shrink_prove_duration;
             let shrink_bytes = bincode::serialize(&shrink_proof).unwrap();
             prover.verify_shrink(&shrink_proof, &vk).expect("Proof verification failed");
@@ -343,8 +356,8 @@ impl SP1Evaluator {
             prover
                 .verify_groth16_bn254(&groth16_proof, &vk, &pv, &artifacts_dir)
                 .expect("Proof verification failed");
-        } 
- 
+        }
+
         let plonk_prove_duration = time::Duration::from_secs(0);
         if args.plonk {
             todo!()
@@ -382,11 +395,11 @@ impl SP1Evaluator {
             hashes_per_second: hashes_per_second(&args.program, prove_duration),
             hash_bytes_per_second: hash_bytes_per_second(&args.program, prove_duration),
         };
-        
+
         if std::env::var("SP1_PRINT").is_ok() {
             println!("{:#?}", report);
         }
-        
+
         report
     }
 }
