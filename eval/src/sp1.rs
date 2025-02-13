@@ -61,6 +61,9 @@ impl SP1Evaluator {
             ProgramId::Fibonacci200k => {
                 stdin.write::<u32>(&15000);
             }
+            ProgramId::Fibonacci300kn => {
+                stdin.write::<u32>(&300000);
+            }
             ProgramId::Fibonacci2m => {
                 stdin.write::<u32>(&150000);
             }

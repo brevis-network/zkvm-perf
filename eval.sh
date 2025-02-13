@@ -125,6 +125,7 @@ RISC0_INFO=1 RUST_LOG=info CUDA_VISIBLE_DEVICES=0 SP1_DISABLE_PROGRAM_CACHE=true
     --hashfn "$3" \
     --shard-size "$4" \
     --filename "$5" \
-    ${6:+--block-number $6}
+    ${6:+--block-number $6} \
+    --groth16
 
 exit $?
