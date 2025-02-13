@@ -393,7 +393,7 @@ impl SP1Evaluator {
             compress_verify_duration: verify_compress_duration.as_secs_f64(),
             compress_proof_size: compress_bytes.len(),
             shrink_prove_duration: shrink_prove_duration.as_secs_f64(),
-            wrap_prove_duration: wrap_prove_duration.as_secs_f64(),
+            wrap_prove_duration: wrap_prove_duration.as_nanos() as f64 / 1_000_000.0,
             groth16_prove_duration: groth16_prove_duration.as_secs_f64(),
             plonk_prove_duration: plonk_prove_duration.as_secs_f64(),
             overall_khz,
