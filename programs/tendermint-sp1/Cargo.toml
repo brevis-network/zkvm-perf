@@ -5,6 +5,7 @@ name = "tendermint-sp1"
 edition = "2021"
 
 [dependencies]
+#sp1-zkvm = "4.0.0-rc.10"
 sp1-zkvm = "4.0.1"
 
 serde = { version = "1.0.204", default-features = false, features = ["derive"] }

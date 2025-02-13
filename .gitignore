@@ -16,7 +16,8 @@ COMMIT_HASH
 
 # Benchmark results
 **/.csv
-**/*.csv
+# **/*.csv
+/benchmarks
 
 # NVIDIA profiling files
 *.nsys-rep
