@@ -31,6 +31,9 @@ impl SP1Evaluator {
         // Get stdin.
         let mut stdin = SP1Stdin::new();
         match args.program {
+            ProgramId::Tendermint => {
+                // Do Nothing, the stdin is static for tendermint elf
+            }
             ProgramId::Loop10k => {
                 stdin.write::<usize>(&2500);
             }
