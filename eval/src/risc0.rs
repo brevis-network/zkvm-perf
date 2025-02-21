@@ -117,7 +117,7 @@ impl Risc0Evaluator {
                 builder.write(&vec![0u8; 1048576 * 10]);
             }
             ProgramId::Rsp17106222 => {
-                let input = include_bytes!("../../blocks/17106222.bin");
+                let input = include_bytes!("../../fixtures/17106222.bin");
                 builder.write(&input.to_vec());
             }
             ProgramId::Rsp20526626 => {

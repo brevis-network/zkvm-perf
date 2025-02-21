@@ -124,10 +124,6 @@ impl SP1Evaluator {
             ProgramId::Keccak25610mb => {
                 stdin.write(&vec![0u8; 1048576 * 10]);
             }
-            // ProgramId::Rsp17106222 => {
-            //     let input = include_bytes!("../blocks/17106222.bin");
-            //     stdin.write_vec(input.to_vec());
-            // }
             ProgramId::Rsp17106222 => {
                 let input = include_bytes!("../../fixtures/17106222.bin");
                 stdin.write_vec(input.to_vec());
@@ -369,7 +365,7 @@ impl SP1Evaluator {
             todo!()
         }
 
-        let prove_duration = prove_core_duration + compress_duration;
+        let prove_duration = prove_core_duration + compress_duration + shrink_prove_duration + wrap_prove_duration + groth16_prove_duration ;
         let core_khz = cycles as f64 / prove_core_duration.as_secs_f64() / 1_000.0;
         let overall_khz = cycles as f64 / prove_duration.as_secs_f64() / 1_000.0;
 
