@@ -120,7 +120,7 @@ impl Risc0Evaluator {
                 builder.write(&vec![0u8; 1048576 * 10]);
             }
             ProgramId::Rsp17106222 => {
-                let input = include_bytes!("../../fixtures/reth-17106222-rsp-main.bin");
+                let input = include_bytes!("../../fixtures/17106222.bin");
                 builder.write(&input.to_vec());
             }
             ProgramId::Rsp20526626 => {
@@ -305,7 +305,7 @@ impl Risc0Evaluator {
                 builder.write(&vec![0u8; 1048576 * 3]);
             }
             ProgramId::Rsp17106222 => {
-                let input = include_bytes!("../../fixtures/reth-17106222-rsp-main.bin");
+                let input = include_bytes!("../../fixtures/17106222.bin");
                 builder.write(&input.to_vec());
             }
             ProgramId::Rsp20526626 => {
