@@ -26,6 +26,7 @@ pub enum ProgramId {
     Fibonacci1b,
     Fibonacci2b,
     Fibonacci4b,
+    Fibonacci300kn,
 
     // SHA-256.
     Sha256100kb,
@@ -46,8 +47,9 @@ pub enum ProgramId {
 
     // Tendermint.
     Tendermint,
-    
+
     // RSP
+    Rsp17106222,
     Rsp20526626,
     Rsp20526627,
     Rsp20526628,
@@ -58,9 +60,9 @@ pub enum ProgramId {
     Rsp20528710,
     Rsp20528711,
     Rsp20528712,
-    
+
     // Signatures
-    ECDSAVerify,    
+    ECDSAVerify,
     EDDSAVerify,
 
     Helios,
@@ -73,7 +75,7 @@ pub enum ProgramId {
 impl ProgramId {
     /// The "priority" of a program is used to sort the programs in the performance report.
     ///
-    /// The higher the priority, the more work the proof requires. 
+    /// The higher the priority, the more work the proof requires.
     pub(crate) fn priority(&self) -> usize {
         match self {
             // Loop
@@ -85,7 +87,7 @@ impl ProgramId {
             ProgramId::Loop30m => 6,
             ProgramId::Loop100m => 7,
             ProgramId::Loop300m => 8,
-            
+
             // Fibonacci
             ProgramId::Fibonacci20k => 1,
             ProgramId::Fibonacci200k => 2,
@@ -98,28 +100,30 @@ impl ProgramId {
             ProgramId::Fibonacci1b => 9,
             ProgramId::Fibonacci2b => 10,
             ProgramId::Fibonacci4b => 11,
-            
+            ProgramId::Fibonacci300kn => 12,
+
             // SHA-256
             ProgramId::Sha256100kb => 1,
             ProgramId::Sha256300kb => 2,
             ProgramId::Sha2561mb => 3,
             ProgramId::Sha2563mb => 4,
             ProgramId::Sha25610mb => 5,
-            
+
             // Keccak-256
             ProgramId::Keccak256100kb => 1,
             ProgramId::Keccak256300kb => 2,
             ProgramId::Keccak2561mb => 3,
             ProgramId::Keccak2563mb => 4,
             ProgramId::Keccak25610mb => 5,
-            
+
             // SSZ Withdrawals
             ProgramId::SSZWithdrawals => 1,
-            
+
             // Tendermint
             ProgramId::Tendermint => 1,
-            
+
             // RSP
+            ProgramId::Rsp17106222 => 1,
             ProgramId::Rsp20526626 => 1,
             ProgramId::Rsp20526627 => 1,
             ProgramId::Rsp20526628 => 1,
@@ -130,7 +134,7 @@ impl ProgramId {
             ProgramId::Rsp20528710 => 1,
             ProgramId::Rsp20528711 => 1,
             ProgramId::Rsp20528712 => 1,
-            
+
             // Signatures
             ProgramId::ECDSAVerify => 1,
             ProgramId::EDDSAVerify => 1,
@@ -182,6 +186,7 @@ impl Display for ProgramId {
             ProgramId::Fibonacci1b => write!(f, "fibonacci-1b"),
             ProgramId::Fibonacci2b => write!(f, "fibonacci-2b"),
             ProgramId::Fibonacci4b => write!(f, "fibonacci-4b"),
+            ProgramId::Fibonacci300kn => write!(f, "fibonacci-300kn"),
             ProgramId::Sha256100kb => write!(f, "sha256-100kb"),
             ProgramId::Sha256300kb => write!(f, "sha256-300kb"),
             ProgramId::Sha2561mb => write!(f, "sha256-1mb"),
@@ -194,6 +199,7 @@ impl Display for ProgramId {
             ProgramId::Keccak25610mb => write!(f, "keccak256-10mb"),
             ProgramId::SSZWithdrawals => write!(f, "ssz-withdrawals"),
             ProgramId::Tendermint => write!(f, "tendermint"),
+            ProgramId::Rsp17106222 => write!(f, "rsp-17106222"),
             ProgramId::Rsp20526626 => write!(f, "rsp-20526626"),
             ProgramId::Rsp20526627 => write!(f, "rsp-20526627"),
             ProgramId::Rsp20526628 => write!(f, "rsp-20526628"),
