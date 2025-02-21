@@ -1,4 +1,0 @@
-program,prover,hashfn,shard_size,shards,cycles,speed,execution_duration,prove_duration,core_prove_duration,core_verify_duration,core_proof_size,core_khz,compress_prove_duration,compress_verify_duration,compress_proof_size,overall_khz,priority,hashes_per_second,hash_bytes_per_second,gas,shrink_prove_duration,wrap_prove_duration,groth16_prove_duration,plonk_prove_duration
-rsp-17106222,sp1,poseidon,21,147,222363498,264280.86042722786,11.402307519,1963.347641877,841.390850781,22.540875169,295827299,264.2808604272279,1121.956791096,0.075420029,1477167,113.2573229809755,1,,,,4.890053475,0,4.464385538,0
-rsp-17106222,sp1,poseidon,21,147,222363498,260753.58382458868,11.475427202,1998.226747723,852.7725477,22.526178196,295827299,260.7535838245887,1145.454200023,0.071576313,1477167,111.28041312297792,1,,,,4.719330192,0,4.382396369,0
-

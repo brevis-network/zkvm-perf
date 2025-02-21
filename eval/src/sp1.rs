@@ -129,7 +129,7 @@ impl SP1Evaluator {
             //     stdin.write_vec(input.to_vec());
             // }
             ProgramId::Rsp17106222 => {
-                let input = include_bytes!("../blocks/reth-17106222-rsp-main.bin");
+                let input = include_bytes!("../../fixtures/17106222.bin");
                 stdin.write_vec(input.to_vec());
             }
             ProgramId::Rsp20526626 => {
