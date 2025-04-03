@@ -33,14 +33,13 @@ sp1-sdk = { version = "4.0.0-rc.10", features = ["native-gnark"] }
 # sp1-sdk = { path = "../../sp1/crates/sdk" }
 
 # risc0
-risc0-zkvm = { version = "=1.2.1", default-features = false, features = [
+risc0-zkvm = { version = "=2.0.1", default-features = false, features = [
   "prove",
   "unstable",
 ], optional = true }
-risc0-groth16 = { version = "=1.2.1", optional = true }
+risc0-groth16 = { version = "=2.0.0", optional = true }
 
 # sp1-reth
-sp1-reth-primitives = { git = "https://github.com/succinctlabs/sp1-reth.git", branch = "john/update-for-v1" }
 ed25519-dalek = { version = "2.1.1", features = ["digest", "rand_core", "serde", "signature"] }
 k256 = { version = "=0.13.3", features = ["serde"] }
 rand = "0.8.5"

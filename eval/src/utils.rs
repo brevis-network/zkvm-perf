@@ -5,7 +5,6 @@ use std::{
 };
 
 use k256::ecdsa::signature::SignerMut;
-use sp1_reth_primitives::SP1RethInput;
 
 use crate::{EvalArgs, ProgramId, ProverId};
 
