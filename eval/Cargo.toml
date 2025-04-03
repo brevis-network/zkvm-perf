@@ -40,7 +40,6 @@ risc0-zkvm = { version = "=1.2.1", default-features = false, features = [
 risc0-groth16 = { version = "=1.2.1", optional = true }
 
 # sp1-reth
-sp1-reth-primitives = { git = "https://github.com/succinctlabs/sp1-reth.git", branch = "john/update-for-v1" }
 ed25519-dalek = { version = "2.1.1", features = ["digest", "rand_core", "serde", "signature"] }
 k256 = { version = "=0.13.3", features = ["serde"] }
 rand = "0.8.5"
