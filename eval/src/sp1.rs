@@ -11,9 +11,10 @@ use crate::{
 
 use sp1_core_executor::SP1Context;
 use sp1_core_machine::io::SP1Stdin;
-use sp1_prover::build::try_build_groth16_bn254_artifacts_dev;
-use sp1_prover::HashableKey;
-use sp1_prover::{components::CpuProverComponents, utils::get_cycles, SP1Prover};
+use sp1_prover::{
+    build::try_build_groth16_bn254_artifacts_dev, components::CpuProverComponents,
+    utils::get_cycles, HashableKey, SP1Prover,
+};
 use sp1_sdk::Prover;
 
 use serde::{Deserialize, Serialize};
@@ -253,7 +254,7 @@ impl SP1Evaluator {
         // }
 
         #[cfg(feature = "cuda")]
-        let server = SP1CudaProver::new().expect("Failed to initialize CUDA prover");
+        let server = SP1CudaProver::new(None).expect("Failed to initialize CUDA prover");
 
         // Setup the program.
         #[cfg(not(feature = "cuda"))]
