@@ -104,7 +104,7 @@ fn main() {
     // Select the correct implementation based on the prover.
     let report = match args.prover {
         ProverId::Risc0 => risc0::Risc0Evaluator::eval(&args),
-        ProverId::SP1 => sp1::SP1Evaluator::eval(&args),
+        ProverId::SP1 => todo!(),
     };
 
     // Create the results directory if it doesn't exist.

@@ -1114,9 +1114,9 @@ dependencies = [
 
 [[package]]
 name = "bytemuck_derive"
-version = "1.8.1"
+version = "1.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3fa76293b4f7bb636ab88fd78228235b5248b4d05cc589aed610f954af5d7c7a"
+checksum = "7ecc273b49b3205b83d648f0690daa588925572cc5063745bfe547fe7ec8e1a1"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1141,7 +1141,8 @@ dependencies = [
 [[package]]
 name = "c-kzg"
 version = "1.0.3"
-source = "git+https://github.com/risc0/c-kzg-4844.git?branch=p1.0.3#63d0d81a22fd8a24257088a446b1490fd222d6c2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f0307f72feab3300336fb803a57134159f6e20139af1357f36c54cb90d8e8928"
 dependencies = [
  "blst",
  "cc",
@@ -3627,9 +3628,9 @@ dependencies = [
 
 [[package]]
 name = "risc0-binfmt"
-version = "2.0.0"
+version = "3.0.0-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0f147f96a8a3058e699a5d39fc7e59d982f633751543ff4437cc0fb21f40b2e0"
+checksum = "8a92ddfde51696f55e565a67a55f2fd6992d4e6b9fec3ef6a82fda86b499f00d"
 dependencies = [
  "anyhow",
  "borsh",
@@ -3646,9 +3647,9 @@ dependencies = [
 
 [[package]]
 name = "risc0-circuit-keccak"
-version = "2.0.0"
+version = "3.0.0-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc6af6fc80443a05d9e8e25aeba78082fc58e8a3c6a6b92017cae0a404494ba9"
+checksum = "c7cab550184813467b276a50d85f057e6c6c18107325a562cc5cdb872a3f82f9"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3662,9 +3663,9 @@ dependencies = [
 
 [[package]]
 name = "risc0-circuit-recursion"
-version = "2.0.0"
+version = "3.0.0-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1c7bdd11df4ed470b3c032ac4c5bfb2729f6151af33ee255b66169de0c35611e"
+checksum = "cdf1bf1f2088c6e42c76f554d1041c3d905620cd14f9c90388900e6ecea40a6a"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3677,9 +3678,9 @@ dependencies = [
 
 [[package]]
 name = "risc0-circuit-rv32im"
-version = "2.0.2"
+version = "3.0.0-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c98a4d9e438aac2e661b8376f6dd48b17a0949b29dbb0aed6e88e62de0bd5940"
+checksum = "f66befbc813de81f81d5eb8e006c2ba4fc756a13c4a0904d862d56668cee0f84"
 dependencies = [
  "anyhow",
  "bit-vec",
@@ -3695,20 +3696,20 @@ dependencies = [
 
 [[package]]
 name = "risc0-core"
-version = "2.0.0"
+version = "2.0.1-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "317bbf70a8750b64d4fd7a2bdc9d7d5f30d8bb305cae486962c797ef35c8d08e"
+checksum = "5ce899ca740c3d827ce0f257385051de594963863dcc58823ab005c5b9d26c4f"
 dependencies = [
  "bytemuck",
  "bytemuck_derive",
- "rand_core 0.6.4",
+ "rand_core 0.9.3",
 ]
 
 [[package]]
 name = "risc0-groth16"
-version = "2.0.0"
+version = "3.0.0-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a800c55717c52f764325bdb18a164843d417a4c8c8a123b7d4206705c11a54c3"
+checksum = "25ce5981ece53c031c816014b55ccc57f9e599f3757dcb2c633d6b05bc12996e"
 dependencies = [
  "anyhow",
  "ark-bn254",
@@ -3727,9 +3728,9 @@ dependencies = [
 
 [[package]]
 name = "risc0-zkos-v1compat"
-version = "2.0.0"
+version = "2.0.2-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa44e7cc6642e621c6f3eea56f57a765f8e599bf327f4d0f74921693234a5d62"
+checksum = "da6a4f098cab3ecf2ca6828b37b9ef56421e2128ab1cd966ee90301fef1459c7"
 dependencies = [
  "include_bytes_aligned",
  "no_std_strings",
@@ -3737,9 +3738,9 @@ dependencies = [
 
 [[package]]
 name = "risc0-zkp"
-version = "2.0.0"
+version = "3.0.0-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "023ed128cab28e4078330fffb65e9d079b3198958e3de6835f70c7ff285afeb4"
+checksum = "f07219d96bb4e394962d49bb0eb6acc57d337d9a9637ed5802262d4b8c02ffd6"
 dependencies = [
  "anyhow",
  "blake2",
@@ -3751,7 +3752,7 @@ dependencies = [
  "hex-literal",
  "metal",
  "paste",
- "rand_core 0.6.4",
+ "rand_core 0.9.3",
  "risc0-core",
  "risc0-zkvm-platform",
  "serde",
@@ -3762,15 +3763,14 @@ dependencies = [
 
 [[package]]
 name = "risc0-zkvm"
-version = "2.0.1"
+version = "3.0.0-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5881af78a17ca292037ef38383233f8d617ab679d68cc07c865e3ddabef1db80"
+checksum = "925a2debd7c7507515a164d1d524f6107f0825b1e1a6a03aa2fff40f039e2c35"
 dependencies = [
  "anyhow",
  "borsh",
  "bytemuck",
  "derive_more 2.0.1",
- "getrandom 0.2.15",
  "hex",
  "risc0-binfmt",
  "risc0-circuit-keccak",
@@ -3791,13 +3791,14 @@ dependencies = [
 
 [[package]]
 name = "risc0-zkvm-platform"
-version = "2.0.1"
+version = "2.0.3-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fed76ab12e5af4c93a3996e0609696cfdd0caebe8746af171ef583fa6e4af134"
+checksum = "ec1ef692aad82441ac2d4a50c20e9257f9b772e3ba0b0fc30045431337eff666"
 dependencies = [
  "bytemuck",
  "cfg-if",
  "getrandom 0.2.15",
+ "getrandom 0.3.2",
  "libm",
  "stability",
 ]
@@ -5089,6 +5090,11 @@ dependencies = [
 ]
 
 [[patch.unused]]
+name = "c-kzg"
+version = "2.1.1"
+source = "git+https://github.com/risc0/c-kzg-4844.git?tag=c-kzg%2Fv2.1.1-risczero.0#1a8fa5497c80eb7f1fecbd7026f9bf86cc63fee2"
+
+[[patch.unused]]
 name = "ed25519-dalek"
 version = "2.1.1"
 source = "git+https://github.com/risc0/curve25519-dalek?tag=curve25519-4.1.2-risczero.0#3dccc5b71b806f500e73829e2a5cbfe288cce2a0"
@@ -5096,9 +5102,9 @@ source = "git+https://github.com/risc0/curve25519-dalek?tag=curve25519-4.1.2-ris
 [[patch.unused]]
 name = "p256"
 version = "0.13.2"
-source = "git+https://github.com/risc0/RustCrypto-elliptic-curves?tag=p256%2Fv0.13.2-risczero.0#cdbf06d8834da2f3581d02e05d042295106176da"
+source = "git+https://github.com/risc0/RustCrypto-elliptic-curves?tag=p256%2Fv0.13.2-risczero.1#bb0f51ad3ba81585f36ea8a1ea81093d8664b195"
 
 [[patch.unused]]
 name = "rsa"
-version = "0.9.6"
-source = "git+https://github.com/risc0/RustCrypto-RSA?tag=v0.9.6-risczero.0#cb42fd295c096c6dddd8386cd57b122add8d0cbc"
+version = "0.9.7"
+source = "git+https://github.com/risc0/RustCrypto-RSA?tag=v0.9.7-risczero.0#6d722ba4fadbdb65a4a023e226db995fae3d1665"

@@ -8,7 +8,7 @@ edition = "2021"
 
 [dependencies]
 sp1-zkvm = "4.0.0-rc.10"
-risc0-zkvm = { version = "=2.0.1", default-features = false, features = ["std", "unstable"] }
+risc0-zkvm = { version = "=3.0.0-rc.1", default-features = false, features = ["std", "unstable"] }
 serde = { version = "1.0.204", default-features = false, features = ["derive"] }
 
 [features]
