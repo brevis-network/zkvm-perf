@@ -332,6 +332,7 @@ impl SP1Evaluator {
 
             shrink_prove_duration = tmp_shrink_prove_duration;
             let shrink_bytes = bincode::serialize(&shrink_proof).unwrap();
+            println!("shrink proof size: {} bytes", shrink_bytes.len());
             prover.verify_shrink(&shrink_proof, &vk).expect("Proof verification failed");
 
             #[cfg(not(feature = "cuda"))]
@@ -347,6 +348,9 @@ impl SP1Evaluator {
             wrap_prove_duration = tmp_wrap_prove_duration;
             // let wrap_bytes = bincode::serialize(&wrap_proof).unwrap();
             // prover.verify_wrap_bn254(&wrap_proof, &vk).expect("Proof verification failed");
+
+            let wrap_bytes = bincode::serialize(&wrap_proof).unwrap();
+            println!("wrap proof size: {} bytes", wrap_bytes.len());
 
             let artifacts_dir =
                 try_build_groth16_bn254_artifacts_dev(&wrap_proof.vk, &wrap_proof.proof);
