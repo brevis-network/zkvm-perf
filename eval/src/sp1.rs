@@ -19,6 +19,8 @@ use sp1_sdk::Prover;
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "cuda")]
+use sp1_cuda::MoongateServer;
+#[cfg(feature = "cuda")]
 use sp1_cuda::SP1CudaProver;
 
 #[cfg(not(feature = "cuda"))]
@@ -263,7 +265,8 @@ impl SP1Evaluator {
         // }
 
         #[cfg(feature = "cuda")]
-        let server = SP1CudaProver::new().expect("Failed to initialize CUDA prover");
+        let server = SP1CudaProver::new(MoongateServer::default())
+            .expect("Failed to initialize CUDA prover");
 
         // Setup the program.
         #[cfg(not(feature = "cuda"))]
@@ -274,7 +277,7 @@ impl SP1Evaluator {
 
         // Execute the program.
         let context = SP1Context::default();
-        let ((pv, _), execution_duration) =
+        let ((pv, _, _), execution_duration) =
             time_operation(|| prover.execute(&elf, &stdin, context.clone()).unwrap());
 
         // Setup the prover opionts.
@@ -365,7 +368,11 @@ impl SP1Evaluator {
             todo!()
         }
 
-        let prove_duration = prove_core_duration + compress_duration + shrink_prove_duration + wrap_prove_duration + groth16_prove_duration ;
+        let prove_duration = prove_core_duration
+            + compress_duration
+            + shrink_prove_duration
+            + wrap_prove_duration
+            + groth16_prove_duration;
         let core_khz = cycles as f64 / prove_core_duration.as_secs_f64() / 1_000.0;
         let overall_khz = cycles as f64 / prove_duration.as_secs_f64() / 1_000.0;
 

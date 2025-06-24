@@ -5,7 +5,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-sp1-zkvm = "5.0.0"
+sp1-zkvm = "5.0.5"
 bincode = "1.3.3"
 rsp-client-executor = { git = "https://github.com/succinctlabs/rsp.git", rev="881ba19" }
 
